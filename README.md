@@ -9,9 +9,8 @@ infestada para sacar a los científicos antes de que el casco se despresurice.
 **Materia:** Modelación de sistemas multiagentes con gráficas computacionales (TC2008B)
 
 ## Integrantes
-- Nombre Apellido · Matrícula
-- Nombre Apellido · Matrícula
-- Nombre Apellido · Matrícula
+- Cristhian Viery Maida Suarez · A01668790
+- Gerardo Martinez Carbajal · A01713474
 - Nombre Apellido · Matrícula
 
 ## Estructura
