@@ -11,3 +11,4 @@ y el proyecto sigue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Estructura inicial del repositorio, .gitignore para Unity y Python, plantilla de PR (17/11/2026).
 - Configuración inicial del tablero `servidor/final.txt` y plano de referencia `docs/mapa_estacion.png` (17/11/2026).
 - Proyecto de Unity (URP) y graybox de la estación generado desde final.txt (17/11/2026).
+- Convenciones del equipo para ramas, commits, PR, CHANGELOG y revisiones en el README (18/11/2026).
