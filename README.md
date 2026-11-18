@@ -11,7 +11,7 @@ infestada para sacar a los científicos antes de que el casco se despresurice.
 ## Integrantes
 - Cristhian Viery Maida Suarez · A01668790
 - Gerardo Martinez Carbajal · A01713474
-- Nombre Apellido · Matrícula
+- Nicolás Bravo Miguel · A01713660
 
 ## Estructura
 | Carpeta | Contenido |
