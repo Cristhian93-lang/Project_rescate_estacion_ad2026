@@ -29,8 +29,24 @@ public class ConstructorEstacion : MonoBehaviour
     public GameObject prefabCompuerta;
     [Tooltip("Opcional. Marco abierto en el borde de ARRIBA (+Z) de la celda.")]
     public GameObject prefabEntrada;
-    public GameObject prefabAlien;
     public GameObject prefabSenal;
+
+    [Header("Variantes: se elige una al azar en cada casilla o borde")]
+    [Tooltip("Muros interiores. Si está vacío se usa Prefab Pared.")]
+    public GameObject[] prefabsPared;
+    [Tooltip("Muros con ventana: se usan en la mitad de los bordes que dan al hangar.")]
+    public GameObject[] prefabsParedExterior;
+    [Tooltip("Columna que se coloca en cada esquina donde se juntan muros.")]
+    public GameObject prefabColumna;
+
+    [Tooltip("Criaturas (= fuego).")]
+    public GameObject[] prefabsAlien;
+    [Tooltip("Esporas (= humo). Se usan cuando el servidor mande humo.")]
+    public GameObject[] prefabsEsporas;
+    [Tooltip("Escuadrón de rescate (= bomberos). Se colocan cuando el servidor mande sus posiciones.")]
+    public GameObject[] prefabsEscuadron;
+    [Tooltip("Prototipos M con sus pilotos (= víctimas). Aparecen al revelar una señal de energía.")]
+    public GameObject[] prefabsPrototipo;
 
     public float tamCelda = 1f;
 
@@ -45,7 +61,7 @@ public class ConstructorEstacion : MonoBehaviour
     private readonly int[,,] bits = new int[FILAS + 2, COLUMNAS + 2, 4];
     private readonly HashSet<string> bordesCompuerta = new HashSet<string>();
     private readonly HashSet<string> bordesEntrada = new HashSet<string>();
-    private Transform raizPisos, raizParedes, raizCompuertas, raizEntradas, raizAliens, raizSenales;
+    private Transform raizPisos, raizParedes, raizCompuertas, raizEntradas, raizAliens, raizSenales, raizColumnas;
 
     void Start()
     {
@@ -110,6 +126,7 @@ public class ConstructorEstacion : MonoBehaviour
         raizEntradas = CrearRaiz("Entradas");
         raizAliens = CrearRaiz("Aliens");
         raizSenales = CrearRaiz("SenalesDeVida");
+        raizColumnas = CrearRaiz("Columnas");
 
         // Piso: interior y hangar.
         for (int fila = 0; fila <= FILAS + 1; fila++)
@@ -140,11 +157,13 @@ public class ConstructorEstacion : MonoBehaviour
                     else if (bordesEntrada.Contains(clave))
                         bordes[clave] = CrearBorde(prefabEntrada, fila, col, lado, raizEntradas, new Color(0.18f, 0.75f, 0.36f), "Entrada", 0.02f);
                     else
-                        bordes[clave] = CrearBorde(prefabPared, fila, col, lado, raizParedes, new Color(0.12f, 0.14f, 0.16f), "Pared");
+                        bordes[clave] = CrearBorde(ElegirPared(fila, col, lado), fila, col, lado, raizParedes, new Color(0.12f, 0.14f, 0.16f), "Pared");
                 }
 
+        ColocarColumnas();
+
         foreach (Vector2Int a in aliensIniciales)
-            CrearEnCelda(prefabAlien, a, raizAliens, new Color(0.48f, 0.25f, 0.72f), "Alien");
+            CrearEnCelda(Elegir(prefabsAlien), a, raizAliens, new Color(0.48f, 0.25f, 0.72f), "Alien", true);
 
         foreach (Vector2Int s in senalesIniciales)
             CrearEnCelda(prefabSenal, s, raizSenales, new Color(0.12f, 0.56f, 0.84f), "Senal");
@@ -170,12 +189,13 @@ public class ConstructorEstacion : MonoBehaviour
         return borde;
     }
 
-    void CrearEnCelda(GameObject prefab, Vector2Int celda, Transform padre, Color color, string nombre)
+    void CrearEnCelda(GameObject prefab, Vector2Int celda, Transform padre, Color color, string nombre, bool girarAlAzar = false)
     {
         GameObject obj;
         if (prefab != null)
         {
-            obj = Instantiate(prefab, Celda(celda.x, celda.y), Quaternion.identity, padre);
+            Quaternion giro = girarAlAzar ? Quaternion.Euler(0f, Random.Range(0f, 360f), 0f) : Quaternion.identity;
+            obj = Instantiate(prefab, Celda(celda.x, celda.y), giro, padre);
         }
         else
         {
@@ -188,7 +208,46 @@ public class ConstructorEstacion : MonoBehaviour
         obj.name = $"{nombre}_{celda.x}_{celda.y}";
     }
 
+    /// <summary>Muro al azar; en los bordes que dan al hangar, la mitad de las veces lleva ventana.</summary>
+    GameObject ElegirPared(int fila, int col, int lado)
+    {
+        bool exterior = (lado == ARRIBA && fila == 1) || (lado == ABAJO && fila == FILAS) ||
+                        (lado == IZQUIERDA && col == 1) || (lado == DERECHA && col == COLUMNAS);
+        GameObject elegido = null;
+        if (exterior && Random.value < 0.5f) elegido = Elegir(prefabsParedExterior);
+        if (elegido == null) elegido = Elegir(prefabsPared);
+        return elegido != null ? elegido : prefabPared;
+    }
+
+    /// <summary>
+    /// Pone una columna en cada esquina de la cuadrícula donde llega al menos un muro, compuerta o entrada.
+    /// La esquina (i, j) está entre las filas i e i+1 y entre las columnas j y j+1.
+    /// </summary>
+    void ColocarColumnas()
+    {
+        if (prefabColumna == null) return;
+        for (int i = 0; i <= FILAS; i++)
+            for (int j = 0; j <= COLUMNAS; j++)
+            {
+                bool hayBorde =
+                    bordes.ContainsKey(Clave(i + 1, j, ARRIBA)) || bordes.ContainsKey(Clave(i + 1, j + 1, ARRIBA)) ||
+                    bordes.ContainsKey(Clave(i, j + 1, IZQUIERDA)) || bordes.ContainsKey(Clave(i + 1, j + 1, IZQUIERDA));
+                if (!hayBorde) continue;
+
+                Vector3 esquina = transform.position + new Vector3((j + 0.5f) * tamCelda, 0f, -(i + 0.5f) * tamCelda);
+                GameObject columna = Instantiate(prefabColumna, esquina, Quaternion.identity, raizColumnas);
+                columna.name = $"Columna_{i}_{j}";
+            }
+    }
+
     // ------------------------------------------------------------ utilidades
+    /// <summary>Una variante al azar de la lista (o null si está vacía).</summary>
+    public static GameObject Elegir(GameObject[] lista)
+    {
+        if (lista == null || lista.Length == 0) return null;
+        return lista[Random.Range(0, lista.Length)];
+    }
+
     /// <summary>Centro de la celda en el mundo. La fila 1 queda arriba (+Z).</summary>
     public Vector3 Celda(int fila, int col)
     {
