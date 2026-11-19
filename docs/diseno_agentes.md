@@ -193,6 +193,19 @@ Aparece una señal en (3, 5) con una criatura al lado. El agente que la descubre
 | No llegar a 25 de daño | Los guardianes atienden los focos junto a paredes dañadas, y las rutas evitan romper paredes. |
 | No desperdiciar PA | Reclamar objetivos evita que dos agentes hagan el mismo trabajo, y guardar PA evita gastarlos en acciones inútiles. |
 
+### 7.1 Cómo contribuye cada algoritmo a los objetivos del sistema
+
+| Algoritmo | Objetivos que apoya | Cómo contribuye |
+|---|---|---|
+| Elección aleatoria (estrategia aleatoria) | Todos, como referencia | No busca cumplir los objetivos: sirve como **línea base**. Comparar contra ella con `batch_run` muestra cuánto mejora la estrategia mejorada. |
+| Función de utilidad (`valor × urgencia / costo en PA`) | Rescatar 7, no perder 4, no llegar a 25 de daño | Ordena los objetivos por importancia y urgencia. Así el agente atiende primero lo que más se puede perder (un piloto cargado o una criatura junto a una señal) y no gasta PA en objetivos de poco valor. |
+| Dijkstra con costo en PA | Rescatar 7, no desperdiciar PA | Encuentra la ruta más barata a cada objetivo. Con menos PA por viaje, el escuadrón alcanza más señales y evacúa más pilotos por turno. |
+| Penalización por daño en paredes | No llegar a 25 de daño | Hace que romper una pared sea cada vez más caro conforme el casco se acerca a 25. El agente solo la rompe cuando no hay otra ruta razonable. |
+| Ruta con riesgo (innovación) | No perder 4 | Evita las casillas junto a criaturas, que tienen más probabilidad de recibir fuego. Reduce los derribos y protege al piloto que se carga. |
+| Memoria compartida | No desperdiciar PA, no perder 4 | Todos conocen las señales, las amenazas y las tareas abiertas sin verlas directamente. Evita trabajo repetido y permite reaccionar rápido cuando aparece un foco junto a una señal. |
+| Red de contratos | Rescatar 7, no desperdiciar PA | Asigna cada tarea al agente que la hace con menos PA. Ningún objetivo se queda sin atender y dos agentes nunca van al mismo. |
+| Coaliciones (roles) | Rescatar 7, no perder 4, no llegar a 25 de daño | Divide el trabajo: los rescatadores se enfocan en sacar pilotos y los guardianes en contener criaturas y cuidar el casco. Cambiar de rol permite aprovechar una señal libre cuando no hay rescatador cerca. |
+
 ---
 
 ## 8. Plan de implementación y evaluación
