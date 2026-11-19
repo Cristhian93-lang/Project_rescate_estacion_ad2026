@@ -16,3 +16,4 @@ y el proyecto sigue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Historia de la Estación Orión-7 y créditos de assets en el README (18/11/2026).
 - HUD de la simulación con turno, rescatados x/7, perdidos x/4, daño al casco x/25 con barra y colores de alerta, controles de iniciar, pausar y velocidad, y selector de estrategia; prefab en `Prefabs/UI` y tag `HUD` (18/11/2026).
 - Documentación del diseño de agentes en `docs/diseno_agentes.md` (18/11/2026).
+- HUD integrado en la escena Estacion con EventSystem para los controles (18/11/2026).
