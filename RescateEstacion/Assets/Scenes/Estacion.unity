@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -319,6 +320,24 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07e8b45d1b888467e80bc3bc99d0aa54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CamaraEstacion
+  velocidad: 6
+  velocidadZoom: 2
+  zoomMinimo: 2
+  zoomMaximo: 8
+  limiteX: {x: -1, y: 10}
+  limiteZ: {x: -8, y: 1}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,7 +376,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.6
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
@@ -410,13 +429,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.55403227, y: -0.21201213, z: 0.14845248, w: 0.79124016}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1084553582}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 70, y: -30, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,13 +624,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConstructorEstacion
   archivoTablero: {fileID: 4900000, guid: 70700e82c67624ab595fe1ea747c2f43, type: 3}
-  prefabPiso: {fileID: 0}
-  prefabPisoHangar: {fileID: 0}
-  prefabPared: {fileID: 0}
-  prefabCompuerta: {fileID: 0}
-  prefabEntrada: {fileID: 0}
-  prefabAlien: {fileID: 0}
-  prefabSenal: {fileID: 0}
+  prefabPiso: {fileID: 2355934597416701073, guid: ddb98c4d3b01b4e8d85d7ba8ed884c3f, type: 3}
+  prefabPisoHangar: {fileID: 8961796136134283030, guid: 9546fa5b27fa74872b49cfeedebaae45, type: 3}
+  prefabPared: {fileID: 6781171411216438761, guid: 78239218e21684d028962cf19d27f9ea, type: 3}
+  prefabCompuerta: {fileID: 2658277932039105354, guid: 568986935bf66463abd98386d09d9d0f, type: 3}
+  prefabEntrada: {fileID: 9175925245166235994, guid: 354067a5eb1364f139855dbf959700ce, type: 3}
+  prefabSenal: {fileID: 6543887911603986688, guid: d2960ded9f0674616bf88c22744cafdb, type: 3}
+  prefabsPared:
+  - {fileID: 6781171411216438761, guid: 78239218e21684d028962cf19d27f9ea, type: 3}
+  - {fileID: 2099093900035105553, guid: a69dbaeb567ec41bf900c5dbc2153b8c, type: 3}
+  - {fileID: 6665225812183818943, guid: 0dfcfb5e62e1747828de9e705587b288, type: 3}
+  - {fileID: 3921939232822474783, guid: 80df11856af0642f7848212c7274cc58, type: 3}
+  - {fileID: 5583565652700996759, guid: 55d2f5810ebec4c55a28bee4167a23c2, type: 3}
+  - {fileID: 335585783015474532, guid: d54fe026dc6c0443898df923b54543e0, type: 3}
+  - {fileID: 5141340231155685146, guid: 3bfe9b7a8215d4f008cc49cb9e93095a, type: 3}
+  prefabsParedExterior:
+  - {fileID: 8732430806502650186, guid: 6855a27dd4073439c956bd2da25ac733, type: 3}
+  - {fileID: 4794116441864233259, guid: 46618099b9e2640779dcc823e64b0d29, type: 3}
+  - {fileID: 9065946191002536032, guid: ee91ce11c9cc34ee98efb045eeab75f3, type: 3}
+  - {fileID: 2588740556997549511, guid: b36bb4aec95284600aaf0eb939ff4d63, type: 3}
+  prefabColumna: {fileID: 8809606810585796713, guid: 33f1a7c2dafac40b9b069ead2d5b1497, type: 3}
+  prefabsAlien:
+  - {fileID: 7342245002663983794, guid: 906b02fc3ab8347da9d6387b59880abd, type: 3}
+  - {fileID: 4501548532264595090, guid: 5388c088d44b446e6a00f0ba965b6708, type: 3}
+  - {fileID: 634573391484482969, guid: 34a2e4ebe78d4463b93a4a23944888a4, type: 3}
+  - {fileID: 7107917702030072302, guid: dbab15ff00d82466b8ecd8c53c46acc4, type: 3}
+  prefabsEsporas:
+  - {fileID: 1900097170209767760, guid: 5186b57a5c06d4477b5d2aed2336f617, type: 3}
+  - {fileID: 4325641641139928364, guid: c5069c9c4b8f94683901436b50dd7dec, type: 3}
+  prefabsEscuadron:
+  - {fileID: 1584154131624871548, guid: a14399d42030543de8c1521379f21689, type: 3}
+  - {fileID: 6100513631883526884, guid: b9dd9f6b74c2c48a28be9610677cbec2, type: 3}
+  - {fileID: 3792286148251380328, guid: e8493deb4031d449da917087deeea238, type: 3}
+  prefabsPrototipo:
+  - {fileID: 5748514173214952046, guid: 78a214f38d23a4aa0a654911ef7462ad, type: 3}
+  - {fileID: 2132804776169119727, guid: e6acc8d0f72964a898df4595f4b98294, type: 3}
+  - {fileID: 3555626780694815625, guid: 63aaf499b1b264c20938845870491ae6, type: 3}
+  - {fileID: 7127532999559390188, guid: 6eb5b017d420040b8b705b00523269c0, type: 3}
   tamCelda: 1
 --- !u!1 &1484385119
 GameObject:
