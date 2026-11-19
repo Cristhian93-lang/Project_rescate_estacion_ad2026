@@ -24,7 +24,7 @@ pierde su proyecto; si se rescatan 7, la misión es un éxito.
 ## Integrantes
 - Cristhian Viery Maida Suarez · A01668790
 - Gerardo Martinez Carbajal · A01713474
-- Nombre Apellido · Matrícula
+- Nicolás Bravo Miguel · A01713660
 
 ## Estructura
 | Carpeta | Contenido |
