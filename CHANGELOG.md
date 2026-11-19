@@ -12,3 +12,5 @@ y el proyecto sigue [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Configuración inicial del tablero `servidor/final.txt` y plano de referencia `docs/mapa_estacion.png` (17/11/2026).
 - Proyecto de Unity (URP) y graybox de la estación generado desde final.txt (17/11/2026).
 - Convenciones del equipo para ramas, commits, PR, CHANGELOG y revisiones en el README (18/11/2026).
+- Prefabs de la estación con muros Ultimate Modular Sci-Fi de acento cian y cables, criaturas y esporas con variantes al azar, escuadrón y Prototipos M animados, cámara con movimiento y zoom (18/11/2026).
+- Historia de la Estación Orión-7 y créditos de assets en el README (18/11/2026).

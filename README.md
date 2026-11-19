@@ -1,10 +1,23 @@
-# Rescate en la Estación
+# Rescate en la Estación Orión-7
 
 Proyecto de Multiagentes del equipo 7.
 
 Simulación multiagente basada en *Flash Point: Fire Rescue* (reglas de la versión familiar),
 con temática de ciencia ficción: un escuadrón de rescate entra a una estación espacial
-infestada para sacar a los científicos antes de que el casco se despresurice.
+infestada por una especie parásita para sacar a los pilotos de los Prototipos M
+antes de que el casco se despresurice.
+
+## Historia
+**Orión-7** es el laboratorio de la Alianza, una coalición de especies alienígenas que desarrolla
+los **Prototipos M**: trajes de combate que solo sus pilotos pueden manejar, diseñados para defender la galaxia.
+
+Durante una prueba, una muestra de una **especie parásita** escapa de su contenedor. Sus **esporas**
+se esparcen por los ductos y eclosionan en **criaturas** que destrozan los mamparos. Los Prototipos
+se apagan por seguridad, con sus pilotos atrapados adentro.
+
+El **Escuadrón de Rescate** de la Alianza entra desde el hangar para reactivar a los pilotos y
+escoltarlos a la salida antes de que la estación se despresurice. Si se pierden 4 pilotos, la Alianza
+pierde su proyecto; si se rescatan 7, la misión es un éxito.
 
 **Materia:** Modelación de sistemas multiagentes con gráficas computacionales (TC2008B)
 
@@ -27,14 +40,15 @@ infestada para sacar a los científicos antes de que el casco se despresurice.
 | Edificio | Estación espacial |
 | Exterior | Hangar |
 | Bomberos | Escuadrón de rescate |
-| Humo | Esporas |
-| Fuego | Alien |
+| Humo | Esporas de la especie parásita |
+| Fuego | Criaturas parásitas |
 | Explosión | Eclosión |
 | Puertas | Compuertas |
-| Víctimas | Científicos |
-| Falsas alarmas | Señales falsas |
-| Puntos de interés | Señales de vida |
-| Ambulancia | Enfermería |
+| Víctimas | Pilotos de los Prototipos M |
+| Falsas alarmas | Trajes vacíos (Prototipo sin piloto) |
+| Puntos de interés | Señales de energía |
+| Cargar a una víctima | Escoltar al Prototipo reactivado |
+| Ambulancia | Enfermería del hangar |
 | Colapso del edificio | Despresurización |
 
 ## Convenciones del equipo
@@ -94,4 +108,12 @@ El título del PR usa el mismo formato que los commits.
 - Después del merge, borrar la rama.
 
 ## Créditos de assets
-- [Modular Sci-Fi MegaKit](https://quaternius.com/packs/modularscifimegakit.html), Quaternius (CC0).
+Todos los modelos son de [Quaternius](https://quaternius.com/) y se usan bajo licencia CC0.
+
+| Pack | Uso en el proyecto |
+|---|---|
+| [Modular Sci-Fi MegaKit](https://quaternius.com/packs/modularscifimegakit.html) | Pisos, cables colgantes y las criaturas Scolitex y Cyclop |
+| [Ultimate Modular Sci-Fi](https://quaternius.com/packs/ultimatemodularscifi.html) | Muros, ventanas, compuertas, columnas y decoración del laboratorio |
+| [Ultimate Monsters](https://sketchfab.com/3d-models/ultimate-monsters-pack-fd72e114d119488da71fe3a16f216c4f) | Criaturas Fish, Glub Evolved y Squidle; espora GreenSpikyBlob |
+| [Ultimate Space Kit](https://opengameart.org/content/ultimate-space-kit-by-quaternius) | Escuadrón (Astronaut) y Prototipos M (Mech). Convertidos de .glb a FBX con Blender |
+| [Sci-Fi Essentials Kit](https://quaternius.com/packs/scifiessentialskit.html) | Objetos de decoración (pendiente) |
