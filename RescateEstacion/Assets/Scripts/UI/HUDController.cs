@@ -13,7 +13,7 @@ public class HUDController : MonoBehaviour
     // Límites del reto (condiciones de victoria / derrota)
     public const int MaxRescatados = 7;
     public const int MaxPerdidos = 4;
-    public const int MaxDanio = 24;
+    public const int MaxDanio = 25;
 
     [Header("Indicadores")]
     [SerializeField] private TMP_Text turnoText;
@@ -140,10 +140,10 @@ public class HUDController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T)) SetTurno(++demoTurno);
-        if (Input.GetKeyDown(KeyCode.R)) SetRescatados(demoRescatados = Mathf.Min(demoRescatados + 1, MaxRescatados));
-        if (Input.GetKeyDown(KeyCode.P)) SetPerdidos(demoPerdidos = Mathf.Min(demoPerdidos + 1, MaxPerdidos));
-        if (Input.GetKeyDown(KeyCode.D)) SetDanio(demoDanio = Mathf.Min(demoDanio + 2, MaxDanio));
+        if (Input.GetKeyDown(KeyCode.Alpha1)) SetTurno(++demoTurno);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) SetRescatados(demoRescatados = Mathf.Min(demoRescatados + 1, MaxRescatados));
+        if (Input.GetKeyDown(KeyCode.Alpha3)) SetPerdidos(demoPerdidos = Mathf.Min(demoPerdidos + 1, MaxPerdidos));
+        if (Input.GetKeyDown(KeyCode.Alpha4)) SetDanio(demoDanio = Mathf.Min(demoDanio + 1, MaxDanio));
     }
 #endif
 }
